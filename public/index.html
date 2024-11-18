@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft 365 User Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            background-color: #ffffff;
+            color: #1e2024;
+        }
+
+        /* Title Bar */
+        .title-bar {
+            //background-color: #1e2024;
+            background-color:white;
+            //color: #ffffff;
+            color:black;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title-bar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .title-bar button {
+            background-color: #007bff;
+            color: #1e2024;
+            border: none;
+            padding: 5px 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        .toolbar {
+            background-color: #1e2024;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .report-section {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            //border:1px solid black;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f2f2f2;
+        }
+
+        .table-striped tbody tr:nth-of-type(even) {
+            background-color: #ffffff;
+        }
+
+        .pagination-controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <h1>Microsoft 365 User Management</h1>
+        <div>
+            <button class="btn" onclick="login()">Login</button>
+            <button class="btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search Users" style="width: 200px;">
+        <button class="btn btn-primary" onclick="searchUsers()">Search</button>
+        <button class="btn btn-primary" onclick="retrieveUserDetails()">Retrieve Users</button>
+        <select id="departmentFilter" class="form-select" onchange="filterUsersByDepartment()" style="width: 150px;">
+            <option value="">Select Department</option>
+            <option value="HR">HR</option>
+            <option value="Sales">Sales</option>
+            <option value="Management">Management</option>
+            <option value="Admin">Admin</option>
+            <option value="IT">IT</option>
+            <option value="Legal">Legal</option>
+            <option value="Payroll">Payroll</option>
+            <option value="Finance">Finance</option>
+        </select>
+        <select id="jobTitleFilter" class="form-select" onchange="filterUsersByJobTitle()" style="width: 150px;">
+            <option value="">Select Job Title</option>
+            <option value="Marketing Manager">Marketing Manager</option>
+            <option value="Technical Writer">Technical Writer</option>
+            <option value="General Manager">General Manager</option>
+            <option value="CEO">CEO</option>
+            <option value="CFO">CFO</option>
+            <option value="Support Executive">Support Executive</option>
+            
+            <option value="Trainee">Trainee</option>
+            <option value="Advocate ">Advocate </option>
+        </select>
+        <select id="adminRoleFilter" class="form-select" onchange="filterUsersByAdminRole()" style="width: 150px;">
+            <option value="">Select Admin Role</option>
+            <option value="Global Administrator">Global Administrator</option>
+            <option value="Security Administrator">Security Administrator</option>
+            <option value="Exchange Administrator">Exchange Administrator</option>
+            <option value="Application Administrator">Application Administrator</option>
+            <option value="User Administrator">User Administrator</option>
+            <option value="Helpdesk Administrator">Helpdesk Administrator</option>
+            <option value="Reports Reader">Reports Reader</option>
+            <option value="Teams Administrator">Teams Administrator</option>
+            <option value="SharePoint Administrator">Sharepoint Administrator</option>
+        </select>
+        <select id="locationFilter" class="form-select" onchange="filterUsersByLocation()" style="width: 150px;">
+            <option value="">Select Location</option>
+            <option value="United States">United States</option>
+            <option value="China">China</option>
+            <option value="India">India</option>
+            <option value="Barbados">Barbados</option>
+        </select>
+    </div>
+
+    <!-- Report Section -->
+    <div class="report-section">
+        <input type="email" id="recipientEmail" class="form-control" placeholder="Enter Admin Email" style="width: 250px;">
+        <button class="btn btn-secondary" onclick="sendReportAsMail()">Send Report as Mail</button>
+        <button class="btn btn-success" onclick="downloadReportAsCSV()">Download Report as CSV</button>
+        <button class="btn btn-danger" onclick="resetScreen()">Reset Data</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Results Section -->
+        <div>
+            <h3 style="text-align: center;">Results</h3>
+            <table class="table table-striped" id="outputTable">
+                <thead>
+                    <tr id="outputHeader"></tr>
+                </thead>
+                <tbody id="outputBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-controls">
+            <button id="prevButton" class="btn btn-secondary" onclick="prevPage()" disabled>Previous</button>
+            <span id="pageInfo" class="mx-3"></span>
+            <button id="nextButton" class="btn btn-secondary" onclick="nextPage()" disabled>Next</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://alcdn.msauth.net/browser/2.24.0/js/msal-browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
