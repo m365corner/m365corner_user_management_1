@@ -1,4 +1,4 @@
-Simple Tool for Managing Active Microsoft 365 Users
+**Simple Tool for Managing Active Microsoft 365 Users**
 Managing Microsoft 365 users can be a challenging task, especially when trying to locate specific users based on attributes like **UserPrincipalName, DisplayName, Job Title, or Department**. The standard **Users > Active Users** screen in Microsoft 365 doesn’t inherently support **advanced filtering options** for these criteria. As a result, administrators often find themselves relying on cumbersome CSV reports or manually digging through user details to locate the intended target.
 
 To simplify this process, we’re excited to introduce our **free Microsoft 365 user management tool**. Designed with administrators in mind, this tool **streamlines user search** and reporting tasks, saving time and effort.
