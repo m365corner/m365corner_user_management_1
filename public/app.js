@@ -57,10 +57,10 @@ async function login() {
         });
         console.log("Login successful:", loginResponse);
         msalInstance.setActiveAccount(loginResponse.account);
-        document.getElementById("output").innerText = "Login successful!";
+        alert("Login successful!");
     } catch (error) {
         console.error("Login failed:", error);
-        document.getElementById("output").innerText = `Login failed: ${error}`;
+        alert("Login failed!");
     }
 }
 
